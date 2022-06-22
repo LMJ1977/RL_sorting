@@ -262,7 +262,7 @@ https://stackoverflow.com/questions/71978756/keras-symbolic-inputs-outputs-do-no
                 self.tasa_aciertos = self.balls_classified_correct/self.balls_classified
         except ZeroDivisionError:
                 self.tasa_aciertos = 0
-        self.reward += (self.tasa_aciertos-0.3333)*1000 
+        self.reward += (self.tasa_aciertos-0.3333)*100000 
     def update_state(self):
         def move_1(self,arr, dir):
                 #create a new array like arr
