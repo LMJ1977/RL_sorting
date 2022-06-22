@@ -99,7 +99,7 @@ class BallSortingEnv(gym.Env):
 
     ### Reward:
     - reward is evaluated at last column of the grid each time step
-    - reward is +10 for each correct ball placement, -5 for each incorrect ball placement, -100 for paddle1 or 2 action -1 if paddle1 or 2 state is 0  and 0 for each void
+    - reward is +10 for each correct ball placement, -5 for each incorrect ball placement, -1 for paddle1 or 2 action -1 if paddle1 or 2 state is 0  and 0 for each void
     - reward is maximized at the end of the episode
     - reward is 0 at the beginning of the episode
     
@@ -237,7 +237,7 @@ https://stackoverflow.com/questions/71978756/keras-symbolic-inputs-outputs-do-no
         #self.info = {"tasa_aciertos": self.balls_classified_correct/self.balls_classified}
         #self.render()
         #return  self.encode_state(), self.reward, self.end_episode(), {"tasa_aciertos": self.tasa_aciertos}
-        return  self.ministate, self.reward, self.end_episode(), {"tasa_aciertos": self.tasa_aciertos}
+        return  self.state, self.reward, self.end_episode(), {"tasa_aciertos": self.tasa_aciertos}
 
     def evaluate_reward(self):
         # check last column for correct ball placement
@@ -252,17 +252,17 @@ https://stackoverflow.com/questions/71978756/keras-symbolic-inputs-outputs-do-no
                         #self.state[i][n_cols-1] == 0:
                         self.reward -= 1.0
                 if self.state[i][n_cols-1] == i+1:
-                        self.reward += 40.0
+                        self.reward += 1.0
                         self.balls_classified_correct += 1
 
                 else:
-                        self.reward -= 500.0
+                        self.reward -= 5.0
                         #pass
         try:                 
                 self.tasa_aciertos = self.balls_classified_correct/self.balls_classified
         except ZeroDivisionError:
                 self.tasa_aciertos = 0
-        #self.reward += (self.tasa_aciertos-0.3333)*10 
+        self.reward += (self.tasa_aciertos-0.3333)*1000 
     def update_state(self):
         def move_1(self,arr, dir):
                 #create a new array like arr
@@ -435,7 +435,7 @@ https://stackoverflow.com/questions/71978756/keras-symbolic-inputs-outputs-do-no
         self.ministate = self.state[:,0:3]
         #print("Environment reset")
         #self.state = self.state.ravel()
-        return self.ministate#self.ministate
+        return self.state#self.ministate
 
 
 
