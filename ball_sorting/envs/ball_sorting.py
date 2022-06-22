@@ -361,7 +361,10 @@ https://stackoverflow.com/questions/71978756/keras-symbolic-inputs-outputs-do-no
         #loop rows
         for i in range(n_rows):
                 if state[i][0] == 0:
-                        state[i][0] = np.random.choice(element_states,1)[0]
+                        if i == 1:
+                            state[i][0] = np.random.choice(element_states,1)[0]
+                        else:
+                            state[i][0] = 0
         self.state = state
 
 
@@ -423,7 +426,7 @@ https://stackoverflow.com/questions/71978756/keras-symbolic-inputs-outputs-do-no
         self.state = np.zeros((n_rows, n_cols))
         for i in range(n_rows):
                 for j in range(n_cols):
-                        self.state[i][j] = random.randint(0, len(element_states)-1)
+                        self.state[i][j] = 0# random.randint(0, len(element_states)-1)
         self.steps_remaining = 2000
         self.reward = 0
         self.done = False
