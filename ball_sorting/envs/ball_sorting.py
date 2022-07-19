@@ -253,7 +253,65 @@ https://stackoverflow.com/questions/71978756/keras-symbolic-inputs-outputs-do-no
                 self.tasa_aciertos = 0
         #self.reward += (self.tasa_aciertos-0.3333)*10
     def update_state(self):
+#         def move_1(self,arr, dir):
+#                 #create a new array like arr
+#                 new_arr = [0,0,0]
+#                 new_curr_arr = [0,0,0]   
+#                 #if dir is 1, reverse  array
+#                 if dir == 1:
+#                         arr = arr[::-1]      
+#                 if arr[0] == 0:
+#                         new_arr = arr
+#                         new_curr_arr = [0,0,0]
+#                 else:
+#                         if arr[1] == 0:
+#                                 if arr[0] != 0:
+#                                         new_arr = [0,arr[0],arr[2]]
+#                                         new_curr_arr = [0,0,0]
+#                                 else:
+#                                         new_arr = [0,arr[1],arr[2]]
+#                                         new_curr_arr = [arr[0],0,0]
+#                         else: 
+#                                 if arr[2] == 0:
+#                                         if arr[0] != 0:
+#                                                 new_arr = [0,arr[0],arr[1]]
+#                                                 new_curr_arr = [0,0,0]
+#                                         else:
+#                                                 new_arr = [0,arr[1],arr[2]]
+#                                                 new_curr_arr = [arr[0],0,0]
+#                                 else:
+#                                         new_arr =  [0,arr[1],arr[2]]
+#                                         new_curr_arr = [arr[0],0,0]
+#                 #if dir is 1, reverse  array
+#                 if dir == 1:
+#                         new_arr = new_arr[::-1]
+#                         new_curr_arr = new_curr_arr[::-1]
+#                 return new_curr_arr, new_arr
+
+#         def move_2(self, arr, dir):
+#                 #create a new array like arr
+#                 new_arr = [0,0,0]
+#                 new_curr_arr = [0,0,0]   
+#                 #if dir is 0, return arr
+#                 if dir == 1:
+#                         arr = arr[::-1]
+#                 if arr[1] == 0:
+#                         new_arr = arr
+#                         new_curr_arr = [0,0,0]
+#                 elif arr[2] == 0:
+#                         new_arr = [0,arr[0],arr[1]]
+#                         new_curr_arr = [0,0,0]
+#                 else:
+#                         new_arr = [0,0,arr[2]]
+#                         new_curr_arr = [arr[0],arr[1],0]
+#                 #if dir is 1, reverse  array
+#                 if dir == 1:
+#                         new_arr = new_arr[::-1]
+#                         new_curr_arr = new_curr_arr[::-1]
+#                 return new_curr_arr,new_arr  
+
         def move_1(self,arr, dir):
+                #dir = not dir
                 #create a new array like arr
                 new_arr = [0,0,0]
                 new_curr_arr = [0,0,0]   
@@ -261,27 +319,17 @@ https://stackoverflow.com/questions/71978756/keras-symbolic-inputs-outputs-do-no
                 if dir == 1:
                         arr = arr[::-1]      
                 if arr[0] == 0:
-                        new_arr = arr
+                        new_arr = [0,arr[1],arr[2]]
+                        new_curr_arr = [arr[0],0,0]
+                elif arr[1] == 0:
+                         new_arr = [0,arr[0],arr[2]]
+                         new_curr_arr = [0,0,0]
+                elif arr[2] == 0:
+                        new_arr = [0,arr[0],arr[1]]
                         new_curr_arr = [0,0,0]
                 else:
-                        if arr[1] == 0:
-                                if arr[0] != 0:
-                                        new_arr = [0,arr[0],arr[2]]
-                                        new_curr_arr = [0,0,0]
-                                else:
-                                        new_arr = [0,arr[1],arr[2]]
-                                        new_curr_arr = [arr[0],0,0]
-                        else: 
-                                if arr[2] == 0:
-                                        if arr[0] != 0:
-                                                new_arr = [0,arr[0],arr[1]]
-                                                new_curr_arr = [0,0,0]
-                                        else:
-                                                new_arr = [0,arr[1],arr[2]]
-                                                new_curr_arr = [arr[0],0,0]
-                                else:
-                                        new_arr =  [0,arr[1],arr[2]]
-                                        new_curr_arr = [arr[0],0,0]
+                        new_arr =  [0,arr[1],arr[2]]
+                        new_curr_arr = [arr[0],0,0]
                 #if dir is 1, reverse  array
                 if dir == 1:
                         new_arr = new_arr[::-1]
@@ -289,6 +337,7 @@ https://stackoverflow.com/questions/71978756/keras-symbolic-inputs-outputs-do-no
                 return new_curr_arr, new_arr
 
         def move_2(self, arr, dir):
+                #dir =  not dir
                 #create a new array like arr
                 new_arr = [0,0,0]
                 new_curr_arr = [0,0,0]   
@@ -296,7 +345,7 @@ https://stackoverflow.com/questions/71978756/keras-symbolic-inputs-outputs-do-no
                 if dir == 1:
                         arr = arr[::-1]
                 if arr[1] == 0:
-                        new_arr = arr
+                        new_arr = [0,arr[0],arr[2]]
                         new_curr_arr = [0,0,0]
                 elif arr[2] == 0:
                         new_arr = [0,arr[0],arr[1]]
@@ -308,7 +357,7 @@ https://stackoverflow.com/questions/71978756/keras-symbolic-inputs-outputs-do-no
                 if dir == 1:
                         new_arr = new_arr[::-1]
                         new_curr_arr = new_curr_arr[::-1]
-                return new_curr_arr,new_arr  
+                return new_curr_arr,new_arr      
                 
         state = self.state.copy()
         #change last column values to voids
