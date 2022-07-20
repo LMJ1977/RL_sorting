@@ -266,6 +266,8 @@ https://stackoverflow.com/questions/71978756/keras-symbolic-inputs-outputs-do-no
                         self.reward += self.ok_reward
                         self.balls_classified_correct += 1
 
+                elif  self.state[i][n_cols-1] == 0:
+                        pass
                 else:
                         self.reward += self.nok_reward
                         #pass
