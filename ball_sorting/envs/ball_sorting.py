@@ -153,6 +153,7 @@ https://stackoverflow.com/questions/71978756/keras-symbolic-inputs-outputs-do-no
         self.nok_reward = -5
         self.wrong_action_reward = -1
         self.delay_multiplier = 1
+        self.ministate_activation = 1
         self.reset()
     
 #     def check_action(self, action_array):
@@ -230,8 +231,11 @@ https://stackoverflow.com/questions/71978756/keras-symbolic-inputs-outputs-do-no
         #self.info = {"tasa_aciertos": self.balls_classified_correct/self.balls_classified}
         #self.render()
         #return  self.encode_state(), self.reward, self.end_episode(), {"tasa_aciertos": self.tasa_aciertos}
-        return  self.ministate, self.reward, self.end_episode(), {"tasa_aciertos": self.tasa_aciertos}
-
+        if self.ministate_activation == 1:
+                return  self.ministate, self.reward, self.end_episode(), {"tasa_aciertos": self.tasa_aciertos}
+        else:
+                return  self.state, self.reward, self.end_episode(), {"tasa_aciertos": self.tasa_aciertos}
+        
     def evaluate_reward(self):
         # check last column for correct ball placement
         # if correct, reward is +40 for each correct ball placement
@@ -490,7 +494,10 @@ https://stackoverflow.com/questions/71978756/keras-symbolic-inputs-outputs-do-no
         self.ministate = self.state[:,0:3]
         #print("Environment reset")
         #self.state = self.state.ravel()
-        return self.ministate#self.ministate
+        if self.ministate_activation == 1:
+                return self.ministate
+        else:
+                return self.state
 
 
 
