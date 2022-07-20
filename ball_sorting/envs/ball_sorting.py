@@ -242,7 +242,7 @@ https://stackoverflow.com/questions/71978756/keras-symbolic-inputs-outputs-do-no
         # if void, reward is 0
         # if incorrect, reward is -5 for each incorrect ball placement
         #loop all columns but last. Give reward for correct ball placement but discounted according distance to last column. More distant columns give less reward.
-        for col in range(n_cols-1):
+        for col in range(3,n_cols-1):
                 #loop rows
                 for row in range(n_rows):
                         #check if empty and give zero reward
