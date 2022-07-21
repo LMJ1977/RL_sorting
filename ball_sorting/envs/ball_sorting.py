@@ -261,7 +261,7 @@ https://stackoverflow.com/questions/71978756/keras-symbolic-inputs-outputs-do-no
                         #self.reward += 1
                 else:
                         #self.state[i][n_cols-1] == 0:
-                        self.reward -= 1.0
+                        self.reward -= 1.0 # Force ball sorting. Negative reward for empty last col
                 if self.state[i][n_cols-1] == i+1:
                         self.reward += self.ok_reward
                         self.balls_classified_correct += 1
